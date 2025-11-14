@@ -9,13 +9,13 @@ export default function NewSimulation() {
 
   if (!selectedProcedure) {
     return (
-      <div className="space-y-4">
-        <div className="card">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-3xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Escolha o Procedimento
           </h2>
-          <p className="text-gray-600 mb-6">
-            Selecione o tipo de procedimento estético que deseja simular
+          <p className="text-gray-700 text-sm">
+            Selecione o tipo de simulação que deseja realizar
           </p>
         </div>
 

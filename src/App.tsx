@@ -1,13 +1,24 @@
 import { useState } from 'react'
-import Header from './components/layout/Header'
-import SimulatorView from './components/simulator/SimulatorView'
+import Sidebar from './components/layout/Sidebar'
+import NewSimulation from './components/simulator/NewSimulation'
+import SimulationsList from './components/simulator/SimulationsList'
+import PatientsList from './components/simulator/PatientsList'
+
+type ViewMode = 'new' | 'simulations' | 'patients'
 
 function App() {
+  const [viewMode, setViewMode] = useState<ViewMode>('new')
+
   return (
     <div className="min-h-screen">
-      <Header />
-      <main className="container mx-auto px-4 py-8">
-        <SimulatorView />
+      <Sidebar currentView={viewMode} onViewChange={setViewMode} />
+
+      <main className="ml-64 min-h-screen p-8">
+        <div className="max-w-7xl mx-auto">
+          {viewMode === 'new' && <NewSimulation />}
+          {viewMode === 'simulations' && <SimulationsList />}
+          {viewMode === 'patients' && <PatientsList />}
+        </div>
       </main>
     </div>
   )
