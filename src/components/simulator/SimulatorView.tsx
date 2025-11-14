@@ -10,16 +10,16 @@ export default function SimulatorView() {
   const [viewMode, setViewMode] = useState<ViewMode>('new')
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Navigation Tabs */}
       <div className="card">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={() => setViewMode('new')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-3 ${
               viewMode === 'new'
-                ? 'bg-primary text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'glass-tab-active'
+                : 'glass-tab hover:scale-105'
             }`}
           >
             <Sparkles className="w-5 h-5" />
@@ -28,10 +28,10 @@ export default function SimulatorView() {
 
           <button
             onClick={() => setViewMode('simulations')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-3 ${
               viewMode === 'simulations'
-                ? 'bg-primary text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'glass-tab-active'
+                : 'glass-tab hover:scale-105'
             }`}
           >
             <History className="w-5 h-5" />
@@ -40,10 +40,10 @@ export default function SimulatorView() {
 
           <button
             onClick={() => setViewMode('patients')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-3 ${
               viewMode === 'patients'
-                ? 'bg-primary text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'glass-tab-active'
+                : 'glass-tab hover:scale-105'
             }`}
           >
             <Users className="w-5 h-5" />
@@ -53,7 +53,7 @@ export default function SimulatorView() {
       </div>
 
       {/* Content Area */}
-      <div>
+      <div className="animate-in fade-in duration-500">
         {viewMode === 'new' && <NewSimulation />}
         {viewMode === 'simulations' && <SimulationsList />}
         {viewMode === 'patients' && <PatientsList />}

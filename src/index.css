@@ -2,13 +2,163 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@layer base {
+  body {
+    @apply text-gray-900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+@layer components {
+  /* Liquid Glass Button */
+  .btn {
+    @apply px-6 py-3 rounded-2xl font-semibold transition-all duration-300
+           backdrop-blur-md border border-white/20 shadow-lg
+           hover:shadow-2xl hover:scale-105 active:scale-95;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-primary {
+    @apply text-white relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-secondary {
+    @apply text-gray-700 bg-white/40;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Liquid Glass Card */
+  .card {
+    @apply rounded-3xl p-6 border border-white/20 shadow-2xl
+           backdrop-blur-xl transition-all duration-500
+           hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]
+           hover:scale-[1.02] hover:border-white/30;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    animation: slideIn 0.5s ease-out;
+  }
+
+  /* Glass Input */
+  .input {
+    @apply w-full px-4 py-3 rounded-2xl outline-none transition-all duration-300
+           border border-white/30 backdrop-blur-md
+           focus:border-primary/50 focus:shadow-lg focus:scale-[1.02];
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .input::placeholder {
+    @apply text-gray-400;
+  }
+
+  /* Glass Label */
+  .label {
+    @apply block text-sm font-semibold text-gray-800 mb-2
+           tracking-wide uppercase text-xs;
+  }
+
+  /* Glass Tab */
+  .glass-tab {
+    @apply px-6 py-3 rounded-2xl font-semibold transition-all duration-300
+           border border-white/20 backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-tab-active {
+    @apply text-white shadow-2xl scale-105;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Procedure Card */
+  .procedure-card {
+    @apply card cursor-pointer group relative overflow-hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .procedure-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+  }
+
+  .procedure-card:hover::before {
+    left: 100%;
+  }
+
+  .procedure-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Glass Badge */
+  .glass-badge {
+    @apply px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider
+           border border-white/30 backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Floating Animation */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
 }
