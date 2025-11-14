@@ -13,7 +13,7 @@ export default function ProcedureSelector({ procedures, onSelect }: ProcedureSel
         <button
           key={procedure.id}
           onClick={() => onSelect(procedure.id)}
-          className="procedure-card text-left"
+          className="procedure-card group text-left"
           style={{ animationDelay: `${index * 0.1}s` }}
         >
           <div className="flex items-start justify-between mb-4">

@@ -125,7 +125,7 @@
 
   /* Procedure Card */
   .procedure-card {
-    @apply card cursor-pointer group relative overflow-hidden;
+    @apply card cursor-pointer relative overflow-hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
